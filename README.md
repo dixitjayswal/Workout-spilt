@@ -1,5 +1,7 @@
 # Six-Day PPL
 
+By **Dixit Jayswal** · [github.com/dixitjayswal](https://github.com/dixitjayswal)
+
 Next.js app for the 6-day push/pull/legs split — every exercise with start/end photos,
 numbered execution steps, the cue that matters, the mistake to avoid, a rest timer and a
 weekly volume breakdown.
@@ -78,3 +80,9 @@ a lettered tile.
   triceps plus delts.
 - Photos from [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (public domain).
 - Add to Home Screen gets a standalone app window.
+
+## Author
+
+**Dixit Jayswal** — [@dixitjayswal](https://github.com/dixitjayswal)
+
+Licensed MIT. Exercise photographs are from free-exercise-db and are public domain.

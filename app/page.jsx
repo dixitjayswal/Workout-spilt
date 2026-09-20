@@ -7,7 +7,7 @@ import {
 
 import { PROGRAM, CORE } from "@/lib/program";
 import { useStore, doneOf, variantOf } from "@/lib/store";
-import { Chevron, Sun, CountUp, Collapse, listStagger, listItem } from "@/components/ui";
+import { Chevron, Sun, GitHubMark, CountUp, Collapse, listStagger, listItem } from "@/components/ui";
 import ExerciseCard from "@/components/ExerciseCard";
 import MiniRow from "@/components/MiniRow";
 import RestTimer from "@/components/RestTimer";
@@ -97,6 +97,29 @@ export default function Page() {
             free-exercise-db
           </a>. Arrow keys move between days. This is a training plan, not medical advice — if
           something hurts in a joint rather than a muscle, stop the set.
+
+          <motion.div
+            className="byline"
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-20px" }}
+            transition={{ duration: 0.4 }}
+          >
+            <span className="sig">
+              <span className="by">Built by</span>
+              <span className="who">Dixit Jayswal</span>
+            </span>
+            <a
+              className="gh-link"
+              href="https://github.com/dixitjayswal"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Dixit Jayswal on GitHub"
+            >
+              <GitHubMark />
+              @dixitjayswal
+            </a>
+          </motion.div>
         </footer>
       </div>
 

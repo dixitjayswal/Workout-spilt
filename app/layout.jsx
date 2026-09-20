@@ -15,6 +15,8 @@ export const metadata = {
   title: "Six-Day PPL",
   description:
     "A 6-day push/pull/legs hypertrophy split with photographed execution steps, coaching cues, weekly volume analysis and a rest timer.",
+  authors: [{ name: "Dixit Jayswal", url: "https://github.com/dixitjayswal" }],
+  creator: "Dixit Jayswal",
   manifest: "/manifest.webmanifest",
   icons: { icon: "/icon.svg", apple: "/icon.svg" },
   appleWebApp: { capable: true, title: "Six-Day PPL", statusBarStyle: "black-translucent" },

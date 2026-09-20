@@ -2,6 +2,17 @@
   "name": "six-day-ppl",
   "version": "1.0.0",
   "private": true,
+  "description": "A 6-day push/pull/legs hypertrophy split with photographed execution steps, coaching cues and a rest timer.",
+  "author": {
+    "name": "Dixit Jayswal",
+    "url": "https://github.com/dixitjayswal"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dixitjayswal/Workout-spilt.git"
+  },
+  "homepage": "https://github.com/dixitjayswal/Workout-spilt",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
