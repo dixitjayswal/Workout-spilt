@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { LIB, NO_PHOTO } from "@/lib/program";
 import { Chevron, ArrowRight, DrawnCheck, Collapse, listItem } from "./ui";
@@ -99,6 +100,14 @@ function Detail({ dayId, i, slot, vi, onVariant }) {
         {e.m && <Note k="Avoid" cls="miss" delay={0.33}>{e.m}</Note>}
         {slot.note && <Note k="Today" cls="prog" delay={0.38}>{slot.note}</Note>}
       </div>
+
+      {/* A real crawlable URL per movement — also what you paste to a training
+          partner instead of "open the app and tap the fourth one". */}
+      <p style={{ marginTop: 12 }}>
+        <Link href={`/exercise/${id}`} className="deep-link">
+          Full guide for {e.n.toLowerCase()} →
+        </Link>
+      </p>
     </div>
   );
 }

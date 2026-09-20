@@ -5,6 +5,7 @@ import {
   AnimatePresence, motion, useScroll, useSpring, useReducedMotion
 } from "framer-motion";
 
+import Link from "next/link";
 import { PROGRAM, CORE } from "@/lib/program";
 import { useStore, doneOf, variantOf } from "@/lib/store";
 import { Chevron, Sun, GitHubMark, CountUp, Collapse, listStagger, listItem } from "@/components/ui";
@@ -12,6 +13,8 @@ import ExerciseCard from "@/components/ExerciseCard";
 import MiniRow from "@/components/MiniRow";
 import RestTimer from "@/components/RestTimer";
 import VolumeChart from "@/components/VolumeChart";
+import AdSlot from "@/components/AdSlot";
+import { AD_SLOT_RAIL } from "@/lib/ads";
 
 const VIEWS = [
   { id: "train", label: "Train" },
@@ -98,6 +101,14 @@ export default function Page() {
           </a>. Arrow keys move between days. This is a training plan, not medical advice — if
           something hurts in a joint rather than a muscle, stop the set.
 
+          <nav className="foot-nav" aria-label="Site">
+            <Link href="/exercise">All exercises</Link>
+            {PROGRAM.map(d => (
+              <Link key={d.id} href={`/day/${d.id}`}>{d.day}</Link>
+            ))}
+            <Link href="/privacy">Privacy</Link>
+          </nav>
+
           <motion.div
             className="byline"
             initial={{ opacity: 0, y: 8 }}
@@ -122,6 +133,9 @@ export default function Page() {
           </motion.div>
         </footer>
       </div>
+
+      <AdSlot slot={AD_SLOT_RAIL} format="vertical"
+        height={600} className="ad-rail" />
 
       <RestTimer />
     </div>

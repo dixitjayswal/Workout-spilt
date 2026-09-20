@@ -1,4 +1,7 @@
+import Script from "next/script";
 import { Barlow_Condensed, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { SITE_URL, SITE_NAME, AUTHOR } from "@/lib/site";
+import { ADSENSE_CLIENT } from "@/lib/ads";
 import "./globals.css";
 
 const cond = Barlow_Condensed({
@@ -12,19 +15,38 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata = {
-  title: "Six-Day PPL",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Six-Day PPL — push/pull/legs split with photos for every exercise",
+    template: `%s | ${SITE_NAME}`
+  },
   description:
-    "A 6-day push/pull/legs hypertrophy split with photographed execution steps, coaching cues, weekly volume analysis and a rest timer.",
-  authors: [{ name: "Dixit Jayswal", url: "https://github.com/dixitjayswal" }],
-  creator: "Dixit Jayswal",
+    "A 6-day push/pull/legs hypertrophy split. Every exercise has start and finish photos, " +
+    "numbered execution steps, the key coaching cue, the common mistake, plus a rest timer " +
+    "and weekly volume breakdown.",
+  keywords: [
+    "push pull legs split", "6 day ppl", "ppl routine", "hypertrophy programme",
+    "workout split with pictures", "how to do exercises correctly", "gym routine"
+  ],
+  authors: [{ name: AUTHOR.name, url: AUTHOR.url }],
+  creator: AUTHOR.name,
+  publisher: AUTHOR.name,
   manifest: "/manifest.webmanifest",
   icons: { icon: "/icon.svg", apple: "/icon.svg" },
-  appleWebApp: { capable: true, title: "Six-Day PPL", statusBarStyle: "black-translucent" },
+  appleWebApp: { capable: true, title: SITE_NAME, statusBarStyle: "black-translucent" },
+  alternates: { canonical: "/" },
+  robots: {
+    index: true, follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 }
+  },
   openGraph: {
-    title: "Six-Day PPL",
-    description: "Push/pull/legs ×2 — every lift photographed, with execution steps, cues and a rest timer.",
-    type: "website"
-  }
+    type: "website", siteName: SITE_NAME, url: SITE_URL,
+    title: "Six-Day PPL — push/pull/legs split with photos for every exercise",
+    description:
+      "Push/pull/legs ×2 — every lift photographed, with execution steps, cues and a rest timer."
+  },
+  twitter: { card: "summary_large_image" },
+  ...(ADSENSE_CLIENT && { other: { "google-adsense-account": ADSENSE_CLIENT } })
 };
 
 export const viewport = {
@@ -48,6 +70,14 @@ try {
 } catch (e) {}
 `;
 
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  url: SITE_URL,
+  author: { "@type": "Person", name: AUTHOR.name, url: AUTHOR.url }
+};
+
 export default function RootLayout({ children }) {
   return (
     // themeScript stamps data-theme on <html> before paint, so the server markup
@@ -58,11 +88,21 @@ export default function RootLayout({ children }) {
       className={`${cond.variable} ${sans.variable} ${mono.variable}`}
     >
       {/* Extensions (Grammarly, password managers) inject attributes onto <body>
-          before React hydrates, which React otherwise reports as a mismatch.
-          This suppresses the diff for this element's attributes only. */}
+          before React hydrates, which React otherwise reports as a mismatch. */}
       <body suppressHydrationWarning>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }} />
         {children}
+
+        {ADSENSE_CLIENT && (
+          <Script
+            id="adsbygoogle-init"
+            strategy="afterInteractive"
+            crossOrigin="anonymous"
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT}`}
+          />
+        )}
       </body>
     </html>
   );
