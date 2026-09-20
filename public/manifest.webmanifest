@@ -1,0 +1,13 @@
+{
+  "name": "Six-Day PPL",
+  "short_name": "PPL",
+  "description": "6-day push/pull/legs split with photographed execution steps and a rest timer.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#E6EAEF",
+  "theme_color": "#11161C",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
